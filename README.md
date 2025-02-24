@@ -15,4 +15,8 @@ docker-compose up --build
 ```
 5. After a few minutes, the web app should be served on: [localhost:5174](http://localhost:5174/)
 
-Video example: 
+### Video example:
+
+[![Video example:](https://img.youtube.com/vi/f200dvGvkig/0.jpg)](https://youtu.be/f200dvGvkig)
+
+Salary: $22/hr
