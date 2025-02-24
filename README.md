@@ -5,7 +5,7 @@ DB_CONNECTION_URL=postgresql://user:password@db:5432/todo
 JWT_SECRET_KEY=<key>
 JWT_EXPIRES_IN=1h
 ```
-3. Replace <key> within the .env file with a random sequence of > 32 characters, for example: 
+3. Replace \<key\> within the .env file with a random sequence of > 32 characters, for example: 
 ```
 JWT_SECRET_KEY=yunkkibhyt63683gf8369f07tv7t79263yfg73tf39ydia
 ```
