@@ -1,0 +1,53 @@
+# Use postgres/example user/password credentials
+services:
+
+  db:
+    image: postgres:15-alpine
+    platform: linux/amd64
+    restart: always
+    ports:
+      - 5434:5432
+    # set shared memory limit when using docker-compose
+    # shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    volumes: 
+      - ./pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: todo
+      POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+
+  backend:
+    build: ./backend
+    container_name: my-backend
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules # Avoid overwriting node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: my-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5174:5174" # Map Vite's dev server port
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Avoid overwriting node_modules
+
+volumes: 
+  pgdata:
