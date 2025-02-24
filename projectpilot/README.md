@@ -13,4 +13,4 @@ JWT_SECRET_KEY=yunkkibhyt63683gf8369f07tv7t79263yfg73tf39ydia
 ```
 docker-compose up --build
 ```
-5. After a few minutes, the web app should be served on: [localhost:5174]:http://localhost:5174/
+5. After a few minutes, the web app should be served on: [localhost:5174](http://localhost:5174/)
